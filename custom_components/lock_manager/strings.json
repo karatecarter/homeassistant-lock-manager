@@ -5,7 +5,7 @@
 
     },
     "step": {
-      "locks": {
+      "user": {
         "data": {
       "entity_name": "Name of lock entity to manage",
       "num_codes": "Number of codes to manage"  },

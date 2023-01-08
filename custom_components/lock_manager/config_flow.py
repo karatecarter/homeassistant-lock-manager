@@ -14,12 +14,12 @@ from homeassistant.helpers.entity_registry import (
 import voluptuous as vol
 
 from .const import DOMAIN
+
 #
 #
-CONF_LOCKS = "locks"
+CONF_LOCKS = "user"
 CONF_LOCKS_SCHEMA = vol.Schema(
-    {vol.Required("entity_name"): cv.entity_id,
-     vol.Required("num_codes"): cv.positive_int}
+    {vol.Required("entity_id"): cv.string, vol.Required("num_codes"): cv.positive_int}
 )
 
 #
@@ -27,8 +27,10 @@ CONF_LOCKS_SCHEMA = vol.Schema(
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class LockManagerCustomConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Lock Manager Custom config flow."""
+
     locks: Dict[str, str] = {}
 
     async def async_step_user(self, user_input: Optional[Dict[str, Any]] = None):
@@ -48,13 +50,14 @@ class LockManagerCustomConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 # self.data = user_input
                 self.entity_id = entity_id
                 self.num_codes = num_codes
-                return self.async_create_entry(title="Smart Lock Manager", data={"entity_id": entity_id, "num_codes": num_codes})
-
+                return self.async_create_entry(
+                    title="Smart Lock Manager",
+                    data={"entity_id": entity_id, "num_codes": num_codes},
+                )
 
         return self.async_show_form(
             step_id=CONF_LOCKS, data_schema=CONF_LOCKS_SCHEMA, errors=errors
         )
-
 
 
 #     @staticmethod
