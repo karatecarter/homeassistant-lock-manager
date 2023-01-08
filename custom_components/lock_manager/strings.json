@@ -1,0 +1,20 @@
+{
+  "config": {
+    "error": {
+
+
+    },
+    "step": {
+      "locks": {
+        "data": {
+      "entity_name": "Name of lock entity to manage",
+      "num_codes": "Number of codes to manage"  },
+        "description": "Enter information about the smart lock to be managed.",
+        "title": "Lock Information"
+      }
+    }
+  },
+  "options": {
+
+  }
+}
